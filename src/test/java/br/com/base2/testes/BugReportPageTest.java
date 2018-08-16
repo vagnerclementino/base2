@@ -8,10 +8,12 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import br.com.base2.pages.BugReportPage;
 import br.com.base2.pages.HomePage;
 import br.com.base2.pages.LoginPage;
+import br.com.base2.pages.ViewIssuesPage;
 
-public class LoginPageTest {
+public class BugReportPageTest {
 	
 	// Declarando um objeto do tipo WebDriver, utilizado pelo Selenium WebDriver. 
     private WebDriver driver;
@@ -41,27 +43,39 @@ public class LoginPageTest {
      
     // Método que testa o login com sucesso no site.
     @Test
-    public void testaLoginComSucesso() {
+    public void testaCriaBugReport() throws Exception{
  
 
     LoginPage mantisLoginPage = new LoginPage(this.driver);
     HomePage  mantisHomePage = mantisLoginPage.login("vagner.clementino", "base2");
-            
+    BugReportPage vagnerProjectBugReportPage = mantisHomePage.openBugReportPage("Vagner Clementino's project");
+     
+    ViewIssuesPage viewIssuePage =  vagnerProjectBugReportPage.submitReport("[All Projects] Teste Patrick", 
+    									    "Erro nos testes automáticos", 
+    									    "Encontrado erro nos testes automáticos");
+    
     //Testa o título para verificar se o login foi realizado
     //e  o usuário foi redirecionado para a página incial    
-    assertEquals("My View - MantisBT", mantisHomePage.getTitle());
+    assertEquals("View Issues - MantisBT", viewIssuePage.getTitle());
 
     }
     
- // Método que testa o login no site com um usuário ou senha inválidos.
     @Test
-    public void testaLoginSemSucesso() throws Exception{
+    public void testaCriaBugReportDescricaoNula() throws Exception{
  
-     LoginPage loginPage = new LoginPage(this.driver);
-     loginPage.login("invaliduser", "invalidpass");
+
+    LoginPage mantisLoginPage = new LoginPage(this.driver);
+    HomePage  mantisHomePage = mantisLoginPage.login("vagner.clementino", "base2");
+    BugReportPage vagnerProjectBugReportPage = mantisHomePage.openBugReportPage("Vagner Clementino's project");
      
-     assertEquals("Your account may be disabled or blocked or the username/password you entered is incorrect.",loginPage.getUserMessage());
-        
+    ViewIssuesPage viewIssuePage =  vagnerProjectBugReportPage.submitReport("[All Projects] Teste Patrick", 
+    									    "Erro nos testes ", 
+    									    "");
+    
+    //Testa o título para verificar se o login foi realizado
+    //e  o usuário foi redirecionado para a página incial    
+    assertEquals("A necessary field \"Description\" was empty. Please recheck your inputs.", viewIssuePage.getPageMessage());
+
     }
 
 }

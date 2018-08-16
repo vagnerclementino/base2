@@ -10,8 +10,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import br.com.base2.pages.HomePage;
 import br.com.base2.pages.LoginPage;
+import br.com.base2.pages.ViewIssueDetailsPage;
 
-public class LoginPageTest {
+public class ShowIssueDetailsTest {
 	
 	// Declarando um objeto do tipo WebDriver, utilizado pelo Selenium WebDriver. 
     private WebDriver driver;
@@ -41,27 +42,17 @@ public class LoginPageTest {
      
     // Método que testa o login com sucesso no site.
     @Test
-    public void testaLoginComSucesso() {
+    public void testaVisualizarIssueDetalhes() throws Exception{
  
 
     LoginPage mantisLoginPage = new LoginPage(this.driver);
     HomePage  mantisHomePage = mantisLoginPage.login("vagner.clementino", "base2");
-            
+    ViewIssueDetailsPage issueDetail = mantisHomePage.jumpToIssue("0001762");
+     
     //Testa o título para verificar se o login foi realizado
     //e  o usuário foi redirecionado para a página incial    
-    assertEquals("My View - MantisBT", mantisHomePage.getTitle());
+    assertEquals("0001762", issueDetail.getIssueID());
 
-    }
-    
- // Método que testa o login no site com um usuário ou senha inválidos.
-    @Test
-    public void testaLoginSemSucesso() throws Exception{
- 
-     LoginPage loginPage = new LoginPage(this.driver);
-     loginPage.login("invaliduser", "invalidpass");
-     
-     assertEquals("Your account may be disabled or blocked or the username/password you entered is incorrect.",loginPage.getUserMessage());
-        
     }
 
 }
