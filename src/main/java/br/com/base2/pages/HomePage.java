@@ -13,20 +13,7 @@ import org.openqa.selenium.support.ui.Select;
  */
 public class HomePage extends Page {
 	
-	@FindBy(using = "nav-item-staff")
-	@CacheLookup
-	private WebElement employeeIcon;
-	
-	@FindBy(css = "li.nav-item-staff li.submenu-item-staff")
-	@CacheLookup
-	private WebElement employeeList;
-	
-	@FindBy(css = ".nav-item-utilities a")
-	private WebElement settingsNav;
 
-	@FindBy(id = "content_nav_item_2")
-	private WebElement leftNavigationElementList;
-	
 	@FindBy(css ="td.menu:nth-child(1) > a:nth-child(3)") 
 	@CacheLookup
 	private WebElement menuItemBugReport;

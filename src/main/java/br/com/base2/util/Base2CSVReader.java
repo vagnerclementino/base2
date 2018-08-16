@@ -36,11 +36,10 @@ public class Base2CSVReader {
 		this.hasNext = true;
 	}
 	
-	public String[] readLine() {
+	public String[] readLine()  {
 		
 		String[] line = null;
 		try {
-            
             
             line = reader.readNext();
             if (line == null) {

@@ -25,8 +25,6 @@ public class BugReportPage extends Page {
 	@CacheLookup
 	private WebElement descriptionInput;
 	
-	
-	
 	@FindBy(css = ".button")
 	@CacheLookup
 	private WebElement submitReportButton;

@@ -10,8 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public abstract class Page {
 
-	//public Screenshot screenshot;
-	
+	//public Screenshot screenshot;	
 	public WebDriverWait wait;
 	
 	protected WebDriver webDriver;
