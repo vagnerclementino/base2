@@ -9,9 +9,13 @@ import org.openqa.selenium.support.PageFactory;
 public class ViewIssueDetailsPage extends Page {
 	
 	//WebElements
-	@FindBy(css = "table.width100:nth-child(6) > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(1)")
+	@FindBy(xpath = "/html/body/table[3]/tbody/tr[3]/td[1]") 
 	@CacheLookup
 	private WebElement issueID;
+	
+	@FindBy(css ="td.menu:nth-child(1) > a:nth-child(1)") 
+	@CacheLookup
+	private WebElement menuItemMyView;
 
 	public ViewIssueDetailsPage(WebDriver webDriver) {
 		super(webDriver);
@@ -23,6 +27,11 @@ public class ViewIssueDetailsPage extends Page {
 		
 		return this.issueID.getText();
 		
+	}
+	
+	public HomePage goToHomePage() {
+		this.menuItemMyView.click();
+		return new HomePage(webDriver);
 	}
 
 }

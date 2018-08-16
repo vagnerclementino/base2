@@ -11,7 +11,7 @@ public class LoginPage extends Page {
 	//WebElements
 	@FindBy(name = "username")
 	@CacheLookup
-	private WebElement userName;
+	private WebElement username;
 
 	@FindBy(name = "password")
 	@CacheLookup
@@ -38,9 +38,9 @@ public class LoginPage extends Page {
         
 	}
 
-	public HomePage login(String uName, String passw){
-		userName.sendKeys(uName);
-		password.sendKeys(passw);
+	public HomePage login(String username, String password){
+		this.username.sendKeys(username);
+		this.password.sendKeys(password);
 		loginbtn.click();
 		return new HomePage(webDriver);
 	}

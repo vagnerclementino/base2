@@ -45,7 +45,7 @@ public class BugReportPage extends Page {
 		summaryInput.sendKeys(summary);
 		descriptionInput.sendKeys(description);
 		submitReportButton.click();
-		webDriver.manage().timeouts().implicitlyWait(500, TimeUnit.SECONDS);
+		webDriver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		return new ViewIssuesPage(webDriver);
 		
 	}
