@@ -1,3 +1,7 @@
+/**********************************************
+ * @author Vagner Clementino
+ * 
+ * ********************************************/
 package br.com.base2.util;
 
 import java.io.FileNotFoundException;

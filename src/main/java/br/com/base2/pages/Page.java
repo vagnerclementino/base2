@@ -1,3 +1,7 @@
+/**********************************************
+ * @author Vagner Clementino
+ * 
+ * ********************************************/
 package br.com.base2.pages;
 
 import org.openqa.selenium.WebDriver;

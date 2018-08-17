@@ -1,3 +1,9 @@
+/**********************************************
+ * @author Vagner Clementino
+ * 
+ * ********************************************/
+
+
 package br.com.base2.pages;
 
 import java.util.concurrent.TimeUnit;
@@ -11,8 +17,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class BugReportPage extends Page {
 	
-	//WebElements
-	
+	//WebElements	
 	@FindBy(name = "category_id")
 	@CacheLookup
 	private WebElement categorySelector;

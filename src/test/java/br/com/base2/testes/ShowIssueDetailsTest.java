@@ -1,3 +1,12 @@
+/**********************************************
+ * @author Vagner Clementino
+ * @create 16/08/2018
+ * @todo:
+ *   - Criação de uma classe base para
+ *     realizar as operações comuns
+ *     a todos os teste.
+ * 
+ * ********************************************/
 package br.com.base2.testes;
 
 import static org.junit.Assert.assertEquals;
@@ -29,8 +38,12 @@ public class ShowIssueDetailsTest {
     private Base2CSVReader csvReader;
 
  
-    // Método que inicia tudo que for necessário para o teste
-    // Cria uma instância do navegador e abre a página inicial da DevMedia.
+	/****************************************************
+	 * A configuração do teste está disponível para
+	 * dois webdrivers: Firefox e Chrome. Para a utilização
+	 * de um webdriver diferente remova o comentário do 
+	 * webdriver a ser utilizado.
+	 * *****************************************************/
     @Before
     public void setUp() throws Exception {
     	
@@ -82,17 +95,22 @@ public class ShowIssueDetailsTest {
     @Test
     public void testaVisualizarIssueDetalhes() throws Exception{
  
-		// Iniciando o leitor do arquivo csv
+       	//Obtendo os dados de teste do arquivo CSV
 		String cvsTestData = "./data/issue-details/bugs.csv";
 		csvReader = new Base2CSVReader(cvsTestData);
 		List<String[]> testaData = this.csvReader.readAll();
+		
+		//Acessa a página de login do site
 		LoginPage mantisLoginPage = new LoginPage(this.driver);
+    	//Realiza o login no site
 		HomePage mantisHomePage = mantisLoginPage.login("vagner.clementino", "base2");
 		
 
 		for (String[] line : testaData) {
 			
+			//line[0] - bug ID	    	
 			
+			//Buscando uma issue pelo seu ID
 			ViewIssueDetailsPage issueDetail = mantisHomePage.jumpToIssue(line[0]);
 			String fileName = new SimpleDateFormat("yyyyMMddHHmmss'-view-issue-details-test.png'").format(new Date());
 	    	takeSnapShot(driver, "./screenshots/" + fileName);
@@ -105,6 +123,7 @@ public class ShowIssueDetailsTest {
 			mantisHomePage = issueDetail.goToHomePage();
 			
 		}
+		csvReader.close();
     }
     
     public static void takeSnapShot(WebDriver webdriver,String fileWithPath) throws Exception{

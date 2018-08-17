@@ -1,3 +1,12 @@
+/**********************************************
+ * @author Vagner Clementino
+ * @create 16/08/2018
+ * @todo:
+ *   - Criação de uma classe base para
+ *     realizar as operações comuns
+ *     a todos os teste.
+ * 
+ * ********************************************/
 package br.com.base2.testes;
 
 import static org.junit.Assert.assertEquals;
@@ -22,15 +31,27 @@ import br.com.base2.util.Base2CSVReader;
 
 public class LoginPageTest {
 	
-	// Declarando um objeto do tipo WebDriver, utilizado pelo Selenium WebDriver. 
+	// Declarando um objeto do tipo WebDriver,
+	//utilizado pelo Selenium WebDriver. 
     private WebDriver driver;
     private Base2CSVReader csvReader;
    
  
-    // Método que inicia tudo que for necessário para o teste
-    // Cria uma instância do navegador e abre a página inicial da DevMedia.
+	/****************************************************
+	 * A configuração do teste está disponível para
+	 * dois webdrivers: Firefox e Chrome. Para a utilização
+	 * de um webdriver diferente remova o comentário do 
+	 * webdriver a ser utilizado.
+	 * *****************************************************/
     @Before
     public void setUp() throws Exception {
+    	
+    	/****************************************************
+    	 * A configuração do teste está disponível para
+    	 * dois webdrivers: Firefox e Chrome. Para a utilização
+    	 * de um webdriver diferente remova o comentário do 
+    	 * webdriver a ser utilizado.
+    	 * *****************************************************/
     	
     	/*********************************************************************************
     	 * 
@@ -79,37 +100,50 @@ public class LoginPageTest {
     }
  
      
-    // Método que testa o login com sucesso no site.
     @Test
+    /**********************************************
+     * Nesse teste realizamos  login no site.
+     * Nesse cenário passamos as credenciais de um
+     * usuário válido.
+     * ******************************************************/
     public void testaLoginComSucesso() throws Exception{
  
-
-	    
-	    //Iniciando o leitor do arquivo csv
+    	//Obtendo os dados de teste do arquivo CSV
 	    String cvsTestData = "./data/login/valid-credentials.csv";
 	    csvReader = new Base2CSVReader(cvsTestData);
 	    List<String[]>testaData = this.csvReader.readAll();
 	    
 	    for (String[] line : testaData) { 
 	    	
+	    	//line[0] - username
+	    	//line[1] - password
+	   
+	    	
+	    	//Acessa a página de login do site
 	    	LoginPage mantisLoginPage = new LoginPage(this.driver);
+	    	//Realiza o login no site
 	    	HomePage  mantisHomePage = mantisLoginPage.login(line[0], line[1]);
-	        
-	        //Testa o título para verificar se o login foi realizado
-	        //e  o usuário foi redirecionado para a página incial    
-	    	 //Call take screenshot function
+	        	        
+	    	//Realiza o screeshot da página
 	    	String fileName = new SimpleDateFormat("yyyyMMddHHmmss'-login-page-test.png'").format(new Date());
 	        takeSnapShot(driver, "./screenshots/" + fileName);
+	        
+	        //Testa o título para verificar se o login foi realizado
+	        //e  o usuário foi redirecionado para a página incial  
 	        assertEquals("My View - MantisBT", mantisHomePage.getTitle());    	
-			
 		}
-	    
 	    csvReader.close();
-
     }
     
-    // Método que testa o login no site com um usuário ou senha inválidos.
     @Test
+    /**********************************************
+     * Nesse teste realizamos  login no site.
+     * Nesse cenário passamos as credenciais de um
+     * usuário inválido. Para identificamos que o caso de uso
+     * funciou corretamente esperamos a exibição da seguinte
+     * mensagem para o usuário: "Your account may be disabled 
+     * or blocked or the username/password you entered is incorrect."
+     * ******************************************************/
     public void testaLoginSemSucesso() throws Exception{
  
 	     
@@ -118,11 +152,16 @@ public class LoginPageTest {
 	     List<String[]>testaData = this.csvReader.readAll();
 	     
 	     for (String[] line : testaData) {
-	    	 
-	    	 LoginPage loginPage = new LoginPage(this.driver);		     
+		     
+	    	 //Acessa a página de login do site
+	    	 LoginPage loginPage = new LoginPage(this.driver);
+	    	 //Realiza o login no site
 	    	 loginPage.login(line[0], line[1]); 
+	    	 
+	    	 //Realiza o screeshot da página
 	    	 String fileName = new SimpleDateFormat("yyyyMMddHHmmss'-login-page-com-sucesso-test.png'").format(new Date());
 	    	 takeSnapShot(driver, "./screenshots/" + fileName);
+	    	 //Verificando a exibição da mensagem de erro
 	    	 assertEquals("Your account may be disabled or blocked or the username/password you entered is incorrect.",loginPage.getUserMessage());
 	     }
 	     
