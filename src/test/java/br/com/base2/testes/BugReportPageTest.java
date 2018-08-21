@@ -12,18 +12,13 @@ package br.com.base2.testes;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import br.com.base2.pages.BugReportPage;
 import br.com.base2.pages.HomePage;
@@ -31,54 +26,9 @@ import br.com.base2.pages.LoginPage;
 import br.com.base2.pages.ViewIssuesPage;
 import br.com.base2.util.Base2CSVReader;
 
-public class BugReportPageTest {
+public class BugReportPageTest extends TestBase{
 	
-    private WebDriver driver;    
-    private Base2CSVReader csvReader;
-
- 
-	/****************************************************
-	 * A configuração do teste está disponível para
-	 * dois webdrivers: Firefox e Chrome. Para a utilização
-	 * de um webdriver diferente remova o comentário do 
-	 * webdriver a ser utilizado.
-	 * *****************************************************/
-    @Before
-    public void setUp() throws Exception {
-    	
-    	/*********************************************************************************
-    	 * 
-    	 * Firefox in Windows x64 
-    	 * 
-    	 * *******************************************************************************/
-		System.setProperty("webdriver.gecko.driver", "./bin/geckodriver/geckodriver.exe");
-		
-	 	/*********************************************************************************
-    	 * 
-    	 * Firefox in Linux x64 property 
-    	 * 
-    	 * *******************************************************************************/
-		//System.setProperty("webdriver.gecko.driver", "./bin/geckodriver/geckodriver");
-		driver = new FirefoxDriver();
-		
-		//System.setProperty("webdriver.chrome.driver","G:\\chromedriver.exe");
-		//WebDriver driver = new ChromeDriver();
-		
-		//Realizando a requisicao para o site a ser testado
-        driver.get("http://mantis-prova.base2.com.br");
-        
-      //Call take screenshot function
-        String fileName = new SimpleDateFormat("yyyyMMddHHmmss'-bug-report-test.png'").format(new Date());
-        takeSnapShot(driver, "./screenshots/" + fileName);
-
-    }
- 
-    @After
-    public void tearDown() throws Exception {
-    	//Fechando a instância do webdriver.
-        driver.quit();
-    }
- 
+    
     @Test
     /**********************************************
      * Nesse teste realizamos a criação de
