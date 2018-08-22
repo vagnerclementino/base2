@@ -27,6 +27,8 @@ public class ViewIssuesPage extends Page {
 	public ViewIssuesPage(WebDriver webDriver) {
 		super(webDriver);
 		PageFactory.initElements(webDriver, this);
+		screenshotFileName =  "viewissue-page-test.png";
+
 	}
 	
 	public String getPageMessage() {
@@ -38,8 +40,9 @@ public class ViewIssuesPage extends Page {
 		
 		return erroMessage.getText();
 	}
-	public BugReportPage goToBugReportPage() {
+	public BugReportPage goToBugReportPage() throws Exception{
 		this.menuItemBugReport.click();
+		takeSnapShot();
 		return new BugReportPage(webDriver);
 	}
 

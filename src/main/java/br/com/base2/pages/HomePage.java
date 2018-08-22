@@ -41,18 +41,10 @@ public class HomePage extends Page {
 	public HomePage(WebDriver webDriver) {
 		super(webDriver);
 		PageFactory.initElements(webDriver, this);
+		screenshotFileName =  "home-page-test.png";
 	}
 
-//	//@Step
-//	public EmployeePage goToEmployeePage () throws Exception{
-////		Actions action = new Actions(webDriver);
-//		// precaution for moveTo not to fail, do it seperately.
-////		action.moveToElement(employeeIcon).perform();
-////		action.moveToElement(employeeList).click(employeeList).perform();
-//		employeeIcon.click();
-//		return new EmployeePage(webDriver);
-//	}
-	
+
 	public BugReportPage openBugReportPage(String projectName) throws Exception{
 		
 		Select projectDropdown = new Select(this.projectSelector);
@@ -60,6 +52,8 @@ public class HomePage extends Page {
 		this.switchProjectButton.click();
 		
 		this.menuItemBugReport.click();
+		//Tirando um screnshot da tela
+		takeSnapShot();
 		return new BugReportPage(webDriver);
 		
 	}

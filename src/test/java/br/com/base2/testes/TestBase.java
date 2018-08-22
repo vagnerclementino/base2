@@ -35,14 +35,14 @@ public class TestBase {
 	    	 * Firefox in Windows x64 
 	    	 * 
 	    	 * *******************************************************************************/
-			//System.setProperty("webdriver.gecko.driver", "./bin/geckodriver/geckodriver.exe");
+			System.setProperty("webdriver.gecko.driver", "./bin/geckodriver/geckodriver.exe");
 			
 		 	/*********************************************************************************
 	    	 * 
 	    	 * Firefox in Linux x64 property 
 	    	 * 
 	    	 * *******************************************************************************/
-			System.setProperty("webdriver.gecko.driver", "./bin/geckodriver/geckodriver");
+			//System.setProperty("webdriver.gecko.driver", "./bin/geckodriver/geckodriver");
 			
 			driver = new FirefoxDriver();
 			

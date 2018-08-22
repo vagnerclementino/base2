@@ -34,6 +34,8 @@ public class LoginPage extends Page {
 		
 		super(webDriver);
 		PageFactory.initElements(webDriver, this);
+		screenshotFileName =  "login-page-test.png";
+		
 		// Verificando se estamos na página correta
         if (!"MantisBT".equals(webDriver.getTitle())) {
             
@@ -42,10 +44,11 @@ public class LoginPage extends Page {
         
 	}
 
-	public HomePage login(String username, String password){
+	public HomePage login(String username, String password) throws Exception{
 		this.username.sendKeys(username);
 		this.password.sendKeys(password);
 		loginbtn.click();
+		takeSnapShot();
 		return new HomePage(webDriver);
 	}
 	

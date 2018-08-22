@@ -11,16 +11,9 @@ package br.com.base2.testes;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
 import org.junit.Test;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 
 import br.com.base2.pages.HomePage;
 import br.com.base2.pages.LoginPage;
@@ -52,11 +45,7 @@ public class LoginPageTest extends TestBase{
 	    	LoginPage mantisLoginPage = new LoginPage(driver);
 	    	//Realiza o login no site
 	    	HomePage  mantisHomePage = mantisLoginPage.login(line[0], line[1]);
-	        	        
-	    	//Realiza o screeshot da página
-	    	String fileName = new SimpleDateFormat("yyyyMMddHHmmss'-login-page-test.png'").format(new Date());
-	        takeSnapShot(driver, "./screenshots/" + fileName);
-	        
+	           
 	        //Testa o título para verificar se o login foi realizado
 	        //e  o usuário foi redirecionado para a página incial  
 	        assertEquals("My View - MantisBT", mantisHomePage.getTitle());    	
@@ -87,9 +76,7 @@ public class LoginPageTest extends TestBase{
 	    	 //Realiza o login no site
 	    	 loginPage.login(line[0], line[1]); 
 	    	 
-	    	 //Realiza o screeshot da página
-	    	 String fileName = new SimpleDateFormat("yyyyMMddHHmmss'-login-page-com-sucesso-test.png'").format(new Date());
-	    	 takeSnapShot(driver, "./screenshots/" + fileName);
+ 
 	    	 //Verificando a exibição da mensagem de erro
 	    	 assertEquals("Your account may be disabled or blocked or the username/password you entered is incorrect.",loginPage.getUserMessage());
 	     }
@@ -98,20 +85,6 @@ public class LoginPageTest extends TestBase{
         
     }
     
-    public static void takeSnapShot(WebDriver webdriver,String fileWithPath) throws Exception{
-
-		// Convert web driver object to TakeScreenshot
-		TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
-
-		// Call getScreenshotAs method to create image file
-		File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
-
-		// Move image file to new destination
-		File DestFile = new File(fileWithPath);
-
-		// Copy file at destination
-		FileUtils.copyFile(SrcFile, DestFile);
-
-    }
+  
 
 }

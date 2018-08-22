@@ -38,6 +38,7 @@ public class BugReportPage extends Page {
 	public BugReportPage(WebDriver webDriver) {
 		super(webDriver);
 		PageFactory.initElements(webDriver, this);
+		screenshotFileName =  "bugreport-page-test.png";
 		
 	}
 	

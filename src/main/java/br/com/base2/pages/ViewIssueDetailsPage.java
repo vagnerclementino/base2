@@ -25,6 +25,7 @@ public class ViewIssueDetailsPage extends Page {
 	public ViewIssueDetailsPage(WebDriver webDriver) {
 		super(webDriver);
 		PageFactory.initElements(webDriver, this);
+		screenshotFileName =  "viewissuedetails-page-test.png";
 
 	}
 	
@@ -34,8 +35,9 @@ public class ViewIssueDetailsPage extends Page {
 		
 	}
 	
-	public HomePage goToHomePage() {
+	public HomePage goToHomePage()  throws Exception{
 		this.menuItemMyView.click();
+		takeSnapShot();
 		return new HomePage(webDriver);
 	}
 
